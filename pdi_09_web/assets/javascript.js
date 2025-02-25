@@ -43,13 +43,17 @@ Vue.createApp({
       fetch('/api/fichiers?t=eco_med_pnmgl_export—eco_med_pnmgl_pagure_ifremer_pt_4326',{
         method : 'get',
       })
-      .then(r => r.text())
+      .then(r => r.json())
       .then(r => {
-        console.log(r)
-        r.geom  .forEach(geom => {
-          geoJ = L.geoJSON(geom);
-          this.layer_test2.addLayer(geoJ);
+        console.log(r.geom)
+        r.geom.forEach(obj => {
+          // console.log(obj)
+          // console.log(obj.geom)
+          geoJ = JSON.parse(obj.geom);
+          this.layer_test2 = geoJ;
       });
+      // this.layer_test2.addTo(this.map);
+
       })
     },
 
@@ -71,7 +75,7 @@ Vue.createApp({
 
         cocher3(){
           if(this.eco){
-              this.layer_test2.addTo(this.map);
+             this.layer_test2.addTo(this.map);
           }else{
             this.map.removeLayer(this.layer_test2);
           }

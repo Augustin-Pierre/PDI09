@@ -12,13 +12,12 @@ Flight::route('/api/fichiers', function() {
     $db = Flight::get('db');
     $table = $_GET["t"];
     if (isset($_GET['id']) && !empty($_GET['id'])) {
-        $reponse = pg_query($db,"SELECT * FROM " .$table." where fid = '". $_GET['id']."'");
-        $reponse = pg_query($db,"SELECT ST_AsGeoJson(geom) AS geom, fid FROM " .$table." where fid = '". $_GET['id']."'");
-        $resultats = pg_fetch_all($reponse, PGSQL_ASSOC)[0];
+        $reponse = pg_query($db,"SELECT ST_AsGeoJson(geom) AS geom FROM " .$table." where fid = '". $_GET['id']."'");
+        $resultats = pg_fetch_all($reponse, PGSQL_ASSOC);
     }
 
     else{
-        $reponse = pg_query($db, "SELECT * from ".$table);
+        $reponse = pg_query($db, "SELECT ST_AsGeoJson(geom) AS geom from ".$table);
         $resultats = pg_fetch_all($reponse, PGSQL_ASSOC);
     }
 
