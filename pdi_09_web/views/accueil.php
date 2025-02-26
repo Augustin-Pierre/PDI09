@@ -27,7 +27,7 @@
             <div><h1>Données</h1></div>
             <div><label><input v-model="perpignan" @change="cocher" type="checkbox" name="perpignan" >Perpignan</label></div>
             <div><label><input v-model="habitat" @change="cocher2" type="checkbox" name="habitat" >Habitats d'intérêt</label></div>
-            <div><label>Données éco ?<input v-model="eco" @change="cocher3" type="checkbox" name="eco" ></label></div>
+            <div><label><input v-model="eco" @change="cocher3" type="checkbox" name="eco" ></label>Données éco ?</div>
         </div>
         
         </div>
